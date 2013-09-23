@@ -165,7 +165,7 @@ linux-g++ {
 
     INCLUDEPATH += /usr/include/
 
-    INCLUDEPATH += /usr/include/pcl-1.6
+    INCLUDEPATH += /usr/include/pcl-1.7
     LIBS += -L/usr/lib \
     -lpcl_common \
     -lpcl_io \

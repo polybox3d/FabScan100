@@ -190,7 +190,7 @@ void GeometryEngine::setSurfaceMeshTo(pcl::PolygonMesh &surfacemesh, pcl::PointC
     std::cout << "1" << std::endl;
     pcl::PointCloud<pcl::PointXYZ> cloud;
     cout << "2" << endl;
-    pcl::fromROSMsg(surfacemesh.cloud, cloud);
+    pcl::fromPCLPointCloud2(surfacemesh.cloud, cloud);
 
     //cout << "GeometryEngine:" << cloud.points.size() << endl;
 

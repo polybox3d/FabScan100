@@ -141,7 +141,7 @@ void FSModel::loadSurfaceMeshFromOFF(const std::string &offFilePath)
       offFile.ignore(256,'\n'); //ignore rest of line
     }
 
-    pcl::toROSMsg(cloud, surfaceMesh.cloud);
+    pcl::toPCLPointCloud2(cloud, surfaceMesh.cloud);
 
     /* read faces from .off file and store them in faceVector */
     surfaceMesh.polygons.reserve(numberOfFaces);

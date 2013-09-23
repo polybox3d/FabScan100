@@ -22,6 +22,7 @@
 #include <QMatrix4x4>
 #include <QQuaternion>
 
+#include <pcl/conversions.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/io/ply_io.h>
 #include <pcl/io/vtk_io.h>
