@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "fsmainwindow.h"
+#include "ui_fsmainwindow.h"
 #include "fscontroller.h"
 #include "fsdialog.h"
 
@@ -18,15 +18,27 @@
 #include <boost/filesystem.hpp>
 #endif
 
-MainWindow::MainWindow(QWidget *parent) :
+FsMainWindow::FsMainWindow(SerialPort *serial, QWidget *parent) :
     QMainWindow(parent),
     hwTimer(new QBasicTimer),
-    ui(new Ui::MainWindow)
+    ui(new Ui::FsMainWindow)
 {
+    FSController::getInstance()->serial = serial;
     ui->setupUi(this);
+
+
     this->setupMenu();
-    this->enumerateSerialPorts();
+  //  this->enumerateSerialPorts();
     this->enumerateWebCams();
+
+    // Addd home button
+    HomeButton* hb = new HomeButton( 50,50, this );
+    hb->setGeometry( this->width()-hb->width()-10,
+                     this->height()-hb->height(),
+                     hb->width(), hb->height());
+    connect( hb, SIGNAL(clicked()), MainWindow::getMainWindow(), SLOT(backToModulePage()));
+
+
     hwTimer->start(5000, this); //timer that checks periodically for attached hardware (camera, arduino)
     dialog = new FSDialog(this);
     controlPanel = new FSControlPanel(this);
@@ -37,15 +49,18 @@ MainWindow::MainWindow(QWidget *parent) :
     //resolution: Good
     FSController::getInstance()->turntableStepSize = 16*FSController::getInstance()->turntable->degreesPerStep;
     FSController::getInstance()->yDpi = 1;
+
+    this->setWindowFlags(Qt::Widget);
 }
 
-MainWindow::~MainWindow()
+FsMainWindow::~FsMainWindow()
 {
+    //this->setUpdatesEnabled(false);
     delete ui;
     FSController::getInstance()->scanning=false;
 }
 
-void MainWindow::setupMenu()
+void FsMainWindow::setupMenu()
 {
     QAction* newPointCloudAction = new QAction("New", this);
     newPointCloudAction->setShortcuts(QKeySequence::New);
@@ -76,7 +91,7 @@ void MainWindow::setupMenu()
     ui->menuFile->addAction(showControlPanelAction);
 }
 
-void MainWindow::
+void FsMainWindow::
 showDialog(QString dialogText)
 {
     dialog->setStandardButtons(QDialogButtonBox::Ok);
@@ -90,7 +105,7 @@ showDialog(QString dialogText)
 // Action Methods
 //===========================================
 
-void MainWindow::exportSTL()
+void FsMainWindow::exportSTL()
 {
     if(FSController::getInstance()->model->pointCloud->empty()){
         this->showDialog("PointCloud is empty! Perform a scan, or open a pointcloud.");
@@ -117,14 +132,14 @@ void MainWindow::exportSTL()
     }
 }
 
-void MainWindow::showControlPanel()
+void FsMainWindow::showControlPanel()
 {
     controlPanel->show();
     controlPanel->raise();
     controlPanel->activateWindow();
 }
 
-void MainWindow::timerEvent(QTimerEvent *e)
+void FsMainWindow::timerEvent(QTimerEvent *e)
 {
     Q_UNUSED(e);
     //this->enumerateSerialPorts();
@@ -135,18 +150,18 @@ void MainWindow::timerEvent(QTimerEvent *e)
 // Menu Methods
 //===========================================
 
-void MainWindow::onSelectSerialPort()
+void FsMainWindow::onSelectSerialPort()
 {
-    QAction* action=qobject_cast<QAction*>(sender());
+ /*   QAction* action=qobject_cast<QAction*>(sender());
     if(!action) return;
     //set new path
     FSController::getInstance()->serial->serialPortPath->clear();
     FSController::getInstance()->serial->serialPortPath->append(action->iconText());
     this->enumerateSerialPorts();
-    FSController::getInstance()->serial->connectToSerialPort();
+    FSController::getInstance()->serial->connectToSerialPort();*/
 }
 
-void MainWindow::onSelectWebCam()
+void FsMainWindow::onSelectWebCam()
 {
     QAction* action=qobject_cast<QAction*>(sender());
     if(!action) return;
@@ -155,7 +170,7 @@ void MainWindow::onSelectWebCam()
     this->enumerateWebCams();
 }
 
-void MainWindow::openPointCloud()
+void FsMainWindow::openPointCloud()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "Open File","","Files (*.pcd) ;; PLY (*.ply)");
     if(fileName.isEmpty() ) return;
@@ -170,7 +185,7 @@ void MainWindow::openPointCloud()
     FSController::getInstance()->meshComputed=false;
 }
 
-void MainWindow::savePointCloud()
+void FsMainWindow::savePointCloud()
 {
     QFileDialog d(this, "Save File","","PCD (*.pcd) ;; PLY (*.ply)");
     d.setAcceptMode(QFileDialog::AcceptSave);
@@ -192,7 +207,7 @@ void MainWindow::savePointCloud()
     ui->widget->updateGL();
 }
 
-void MainWindow::newPointCloud()
+void FsMainWindow::newPointCloud()
 {
     FSController::getInstance()->model->pointCloud->clear();
     FSController::getInstance()->model->surfaceMesh.polygons.clear();
@@ -201,7 +216,7 @@ void MainWindow::newPointCloud()
     FSController::getInstance()->meshComputed=false;
 }
 
-void MainWindow::readConfiguration()
+void FsMainWindow::readConfiguration()
 {
     if(FSController::config->readConfiguration()){
         this->showDialog("Successfully read configuration file!");
@@ -210,9 +225,9 @@ void MainWindow::readConfiguration()
     }
 }
 
-void MainWindow::enumerateSerialPorts()
+void FsMainWindow::enumerateSerialPorts()
 {
-    QList<QextPortInfo> ports = QextSerialEnumerator::getPorts();
+ /*   QList<QextPortInfo> ports = QextSerialEnumerator::getPorts();
     ui->menuSerialPort->clear();
 
     foreach (QextPortInfo info, ports) {
@@ -232,10 +247,10 @@ void MainWindow::enumerateSerialPorts()
         //qDebug() << "vendor ID:"       << info.vendorID;
         //qDebug() << "product ID:"      << info.productID;
         //qDebug() << "===================================";
-    }
+    }*/
 }
 
-void MainWindow::enumerateWebCams()
+void FsMainWindow::enumerateWebCams()
 {
     if(QCamera::availableDevices().size()==0){
        QAction* a = new QAction("No camera found.", this);
@@ -268,7 +283,7 @@ void MainWindow::enumerateWebCams()
     }
 }
 
-void MainWindow::on_scanButton_clicked()
+void FsMainWindow::on_scanButton_clicked()
 {
     //doneScanning();
     //QFuture<void> future = QtConcurrent::run(FSController::getInstance(), &FSController::scanThread);
@@ -284,7 +299,7 @@ void MainWindow::on_scanButton_clicked()
 
 }
 
-void MainWindow::doneScanning()
+void FsMainWindow::doneScanning()
 {
     QSound::play("done.wav");
     this->ui->scanButton->setText("Start Scan");
@@ -293,13 +308,13 @@ void MainWindow::doneScanning()
     applyState(POINT_CLOUD);
 }
 
-void MainWindow::redraw()
+void FsMainWindow::redraw()
 {
     //ui->widget->drawState = 0;
     ui->widget->updateGL();
 }
 
-void MainWindow::applyState(FSState s)
+void FsMainWindow::applyState(FSState s)
 {
     state = s;
     switch(state){
@@ -322,7 +337,7 @@ void MainWindow::applyState(FSState s)
     }
 }
 
-void MainWindow::on_resolutionComboBox_currentIndexChanged(const QString &arg1)
+void FsMainWindow::on_resolutionComboBox_currentIndexChanged(const QString &arg1)
 {
     if(arg1.compare("Best")==0){
         //laserStepSize = 2*laser->degreesPerStep;

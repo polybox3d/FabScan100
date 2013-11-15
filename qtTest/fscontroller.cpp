@@ -21,7 +21,6 @@ FSController::FSController()
     geometries = new GeometryEngine();
     model = new FSModel();
     //Harware
-    serial = new FSSerial();
     webcam = new FSWebCam();
     turntable = new FSTurntable();
     laser = new FSLaser();

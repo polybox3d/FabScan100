@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>FsMainWindow</class>
+ <widget class="QMainWindow" name="FsMainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>622</width>
-    <height>513</height>
+    <width>800</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -65,7 +65,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
-       <number>-1</number>
+       <number>6</number>
       </property>
       <property name="leftMargin">
        <number>17</number>
@@ -171,6 +171,19 @@
         </item>
        </widget>
       </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
      </layout>
     </item>
    </layout>
@@ -180,19 +193,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>622</width>
+     <width>800</width>
      <height>22</height>
     </rect>
    </property>
    <property name="defaultUp">
-    <bool>true</bool>
+    <bool>false</bool>
    </property>
-   <widget class="QMenu" name="menuSerialPort">
-    <property name="title">
-     <string>SerialPort</string>
-    </property>
-    <addaction name="actionPort1"/>
-   </widget>
    <widget class="QMenu" name="menuCamera">
     <property name="title">
      <string>Camera</string>
@@ -204,7 +211,6 @@
     </property>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuSerialPort"/>
    <addaction name="menuCamera"/>
   </widget>
   <action name="actionPort1">

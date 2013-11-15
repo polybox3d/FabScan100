@@ -2,7 +2,7 @@
 #define FSCONTROLLER_H
 
 #include "staticHeaders.h"
-#include "mainwindow.h"
+#include "fsmainwindow.h"
 #include "fscontrolpanel.h"
 #include "geometryengine.h"
 #include "fsmodel.h"
@@ -12,6 +12,8 @@
 #include "fslaser.h"
 #include "fsvision.h"
 #include "fsconfiguration.h"
+
+#include "SerialPort.h"
 
 class GeometryEngine;
 class FSModel;
@@ -28,11 +30,11 @@ class FSController
         FSController();
 
     public:
-        MainWindow* mainwindow;
+        FsMainWindow* mainwindow;
         FSControlPanel* controlPanel;
         GeometryEngine* geometries;
         FSModel* model;
-        FSSerial* serial;
+        SerialPort* serial;
         FSWebCam* webcam;
         FSTurntable* turntable;
         FSLaser* laser;

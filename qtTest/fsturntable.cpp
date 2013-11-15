@@ -14,16 +14,17 @@ void FSTurntable::turnNumberOfSteps(unsigned int steps)
     char c[size];
     unsigned int s = steps;
     for(unsigned int i=0; i<=steps/256; i++){
-        c[2*i]=MC_PERFORM_STEP;
-        if(s<256){
-            c[2*i+1]=s%256;
-        }else{
-            c[2*i+1]=255;
+        if(s<256)
+        {
+            FSController::getInstance()->serial->sendMCode( s%256 );
+        }
+        else
+        {
+            FSController::getInstance()->serial->sendMCode( 255 );
             s-=255;
         }
     }
-    this->selectStepper();
-    FSController::getInstance()->serial->writeChars(c);
+
 }
 
 void FSTurntable::turnNumberOfDegrees(double degrees)
@@ -39,10 +40,15 @@ void FSTurntable::turnNumberOfDegrees(double degrees)
 
 void FSTurntable::setDirection(FSDirection d)
 {
-    this->selectStepper();
     direction = d;
-    char c = (d==FS_DIRECTION_CW)?MC_SET_DIRECTION_CW:MC_SET_DIRECTION_CCW;
-    FSController::getInstance()->serial->writeChar(c);
+    if ( d==FS_DIRECTION_CW )
+    {
+       FSController::getInstance()->serial->sendMCode( MC_SET_TABLE_DIRECTION_CW );
+    }
+    else
+    {
+        FSController::getInstance()->serial->sendMCode( MC_SET_TABLE_DIRECTION_CCW );
+    }
 }
 
 void FSTurntable::toggleDirection(){
@@ -52,22 +58,20 @@ void FSTurntable::toggleDirection(){
 
 void FSTurntable::selectStepper()
 {
-    char c[2];
+    /*char c[2];
     c[0] = MC_SELECT_STEPPER;
     c[1] = MC_TURNTABLE_STEPPER;
-    FSController::getInstance()->serial->writeChars(c);
+    FSController::getInstance()->serial->sendMCode(c);*/
 }
 
 void FSTurntable::enable(void)
 {
-    this->selectStepper();
-    FSController::getInstance()->serial->writeChar(MC_TURN_STEPPER_ON);
+    FSController::getInstance()->serial->sendMCode(MC_TURN_TABLE_STEPPER_ON);
 }
 
 void FSTurntable::disable(void)
 {
-    this->selectStepper();
-    FSController::getInstance()->serial->writeChar(MC_TURN_STEPPER_OFF);
+    FSController::getInstance()->serial->sendMCode(MC_TURN_TABLE_STEPPER_OFF);
 }
 
 void FSTurntable::setRotation(FSPoint r)
