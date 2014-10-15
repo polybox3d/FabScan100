@@ -32,12 +32,12 @@ FsMainWindow::FsMainWindow(SerialPort *serial, QWidget *parent) :
     this->enumerateWebCams();
 
     // Addd home button
-    HomeButton* hb = new HomeButton( 50,50, this );
+    /*HomeButton* hb = new HomeButton( 50,50, this );
     hb->setGeometry( this->width()-hb->width()-10,
                      this->height()-hb->height(),
                      hb->width(), hb->height());
     connect( hb, SIGNAL(clicked()), MainWindow::getMainWindow(), SLOT(backToModulePage()));
-
+*/
 
     hwTimer->start(5000, this); //timer that checks periodically for attached hardware (camera, arduino)
     dialog = new FSDialog(this);
@@ -56,6 +56,7 @@ FsMainWindow::FsMainWindow(SerialPort *serial, QWidget *parent) :
 FsMainWindow::~FsMainWindow()
 {
     //this->setUpdatesEnabled(false);
+    hwTimer->stop();
     delete ui;
     FSController::getInstance()->scanning=false;
 }

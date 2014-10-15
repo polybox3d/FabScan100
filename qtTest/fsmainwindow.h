@@ -14,6 +14,8 @@ class QBasicTimer;
 class QGLShaderProgram;
 QT_END_NAMESPACE
 
+#include <QCameraInfo>
+
 typedef enum _FSState {
     POINT_CLOUD,
     SURFACE_MESH,
