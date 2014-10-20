@@ -1,8 +1,8 @@
 #ifndef FSDEFINES_H
 #define FSDEFINES_H
 
-#define MC_TURN_LASER_OFF      "615 S0"
-#define MC_TURN_LASER_ON       "615 S1"
+#define MC_TURN_LASER_OFF      "629 P0 S0"
+#define MC_TURN_LASER_ON       "629 P0 S100"
 
 
 

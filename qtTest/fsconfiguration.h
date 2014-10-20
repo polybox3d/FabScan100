@@ -34,6 +34,9 @@ public:
     int CAM_IMAGE_WIDTH;
     int CAM_IMAGE_HEIGHT; //here I am not sure, i think it is 960, (old=853.0f)
 
+    //rotation of the input frame
+    float CAM_ROTATE;
+
     //position of the laser
     float LASER_POS_X; //precise by construction
     float LASER_POS_Y; //not needed/used for calculations
