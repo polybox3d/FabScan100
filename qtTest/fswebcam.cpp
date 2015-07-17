@@ -76,6 +76,7 @@ void FSWebCam::setCamera(const QByteArray &cameraDevice)
     imageCapture->setEncodingSettings(imageSettings);
 
     camera->setViewfinder(FSController::getInstance()->controlPanel->ui->viewfinder );
+
     FSController::getInstance()->controlPanel->ui->cameraLabel->setStyleSheet("border-style: solid; border-color: black; border-width: 3px 1px 3px 1px;");
     FSController::getInstance()->controlPanel->ui->cameraLabel->setText("");
     camera->setCaptureMode(QCamera::CaptureStillImage);
@@ -119,6 +120,10 @@ void FSWebCam::imageSaved(int id, const QString &fileName)
     QImage img = QImage(fileName);
     QFile::remove(fileName);
     QImage img2 = img.convertToFormat(QImage::Format_RGB888);
+
+    // Rotate the frame so it always shows in the correct orientation
+    img2 = img2.transformed(QTransform().rotate(FSController::config->CAM_ROTATE));
+
     //qDebug() << img2.height() << img2.width();
     cv::Mat mat(img2.height(),
                 img2.width(),

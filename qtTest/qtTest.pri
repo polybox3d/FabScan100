@@ -4,8 +4,12 @@ DEPENDPATH += $$PWD
 
 QT += core gui opengl multimedia multimediawidgets
 
+
 CONFIG += precompile_header
 PRECOMPILED_HEADER = $$PWD/staticHeaders.h
+
+INCLUDEPATH += /usr/local/include/pcl-1.8/
+INCLUDEPATH += /usr/include/eigen3/
 
 #include(qextserialport-1.2beta2/src/qextserialport.pri)
 
@@ -127,12 +131,13 @@ macx {
         -lboost_wserialization-mt \
 }
 
-linux-g++ {
+
     message("Buildng for Linux.")
 
     #CONFIG += link_pkgconfig
     #PKGCONFIG += opencv
     #INCLUDEPATH += /usr/local/include/opencv2/
+    INCLUDEPATH += /usr/include
     INCLUDEPATH += /usr/include/boost/
 
     LIBS += -L/usr/lib/ \
@@ -155,10 +160,10 @@ linux-g++ {
     -lopencv_features2d \
     -lopencv_calib3d
 
-    INCLUDEPATH += /usr/include/
+    INCLUDEPATH += /usr/local/include/
 
-    INCLUDEPATH += /usr/include/pcl-1.7
-    LIBS += -L/usr/lib \
+    INCLUDEPATH += /usr/local/include/pcl-1.8/
+    LIBS += -L/usr/local/lib/ \
     -lpcl_common \
     -lpcl_io \
     -lpcl_filters \
@@ -168,7 +173,7 @@ linux-g++ {
     -lpcl_segmentation \
     -lpcl_surface \
     -lpcl_search
-}
+
 
 win32 {
     message("Buildng for Win. not working yet...")

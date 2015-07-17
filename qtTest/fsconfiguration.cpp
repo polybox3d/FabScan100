@@ -32,6 +32,7 @@ void FSConfiguration::setDefaultValues()
     CAM_IMAGE_WIDTH = 1280.0f;
     CAM_IMAGE_HEIGHT = 960.0f; //here I am not sure, i think it is 960, (old=853.0f)
 
+    CAM_ROTATE = 180.0f;
     /********************************/
     /*    HARDWARE SETUP DEFINES    */
     /********************************/
@@ -64,6 +65,7 @@ void FSConfiguration::read(const FileNode& node)                          //Read
     node["FRAME_WIDTH"] >> FRAME_WIDTH;
     node["CAM_IMAGE_WIDTH"] >> CAM_IMAGE_WIDTH;
     node["CAM_IMAGE_HEIGHT"] >> CAM_IMAGE_HEIGHT;
+    node["CAM_ROTATE"] >> CAM_ROTATE;
     node["LASER_POS_X"] >> LASER_POS_X;
     node["LASER_POS_Y"] >> LASER_POS_Y;
     node["LASER_POS_Z"] >> LASER_POS_Z;
