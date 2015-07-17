@@ -4,6 +4,8 @@
 #include "staticHeaders.h"
 #include "fsserial.h"
 
+#include "MovementModule.h"
+
 class FSTurntable
 {
 private:
@@ -14,6 +16,7 @@ public:
     double degreesPerStep; //the stepper performs step of a certain number of degrees
 
     FSTurntable();
+
     void turnNumberOfSteps(unsigned int steps); //tell turntable to move a certain number of steps
     void turnNumberOfDegrees(double degrees);   //tell turntable to move a certain number of degrees
     void setDirection(FSDirection direction);   //set the direction of the turntable, either clockwise or counterclock wise

@@ -21,18 +21,18 @@ void FSLaser::selectStepper()
     /*char c[2];
     c[0] = MC_SELECT_STEPPER;
     c[1] = MC_LASER_STEPPER;
-    FSController::getInstance()->serial->sendMCode(c);*/
+    ComModule::getInstance()->sendMCode(c);*/
     qDebug()<<"The fuk useless";
 }
 
 void FSLaser::turnOn()
 {
-    FSController::getInstance()->serial->sendMCode(MC_TURN_LASER_ON);
+    ComModule::getInstance()->sendMCode(MC_TURN_LASER_ON);
 }
 
 void FSLaser::turnOff()
 {
-    FSController::getInstance()->serial->sendMCode(MC_TURN_LASER_OFF);
+    ComModule::getInstance()->sendMCode(MC_TURN_LASER_OFF);
 }
 
 void FSLaser::turnNumberOfSteps(unsigned int steps)
@@ -44,9 +44,9 @@ void FSLaser::turnNumberOfSteps(unsigned int steps)
     unsigned int s = steps;
     for(unsigned int i=0; i<=(steps/256); i++){
         if(s<256){
-            FSController::getInstance()->serial->sendMCode( MC_ROTATE_LASER+(s%256) );
+            ComModule::getInstance()->sendMCode( MC_ROTATE_LASER+(s%256) );
         }else{
-            FSController::getInstance()->serial->sendMCode( MC_ROTATE_LASER+(255) );
+            ComModule::getInstance()->sendMCode( MC_ROTATE_LASER+(255) );
             s-=255;
         }
     }
@@ -88,11 +88,11 @@ void FSLaser::setDirection(FSDirection d)
     direction = d;
     if ( d==FS_DIRECTION_CW )
     {
-       FSController::getInstance()->serial->sendMCode( MC_SET_LASER_DIRECTION_CW );
+       ComModule::getInstance()->sendMCode( MC_SET_LASER_DIRECTION_CW );
     }
     else
     {
-        FSController::getInstance()->serial->sendMCode( MC_SET_LASER_DIRECTION_CCW );
+        ComModule::getInstance()->sendMCode( MC_SET_LASER_DIRECTION_CCW );
     }
 
 }
@@ -104,12 +104,12 @@ void FSLaser::toggleDirection(){
 
 void FSLaser::enable(void)
 {
-    FSController::getInstance()->serial->sendMCode(MC_TURN_LASER_STEPPER_ON);
+    ComModule::getInstance()->sendMCode(MC_TURN_LASER_STEPPER_ON);
 }
 
 void FSLaser::disable(void)
 {
-    FSController::getInstance()->serial->sendMCode(MC_TURN_LASER_STEPPER_OFF);
+    ComModule::getInstance()->sendMCode(MC_TURN_LASER_STEPPER_OFF);
 }
 
 void FSLaser::setLaserPointPosition(FSPoint p)

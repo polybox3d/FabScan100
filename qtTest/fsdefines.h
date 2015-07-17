@@ -1,29 +1,27 @@
 #ifndef FSDEFINES_H
 #define FSDEFINES_H
 
-#define MC_TURN_LASER_OFF      "615 S0"
-#define MC_TURN_LASER_ON       "615 S1"
+#define MC_TURN_LASER_OFF            "629 P0 S0"
+#define MC_TURN_LASER_ON             "629 P0 S255"
 
 
 
-#define MC_ROTATE_LASER        "617 S"
-#define MC_TURN_LASER_STEPPER_ON     "616 S1"
-#define MC_TURN_LASER_STEPPER_OFF     "616 S0"
-#define MC_SET_LASER_DIRECTION_CW    "618 S1"
-#define MC_SET_LASER_DIRECTION_CCW   "618 S0"
+#define MC_ROTATE_LASER              "632 S"
+#define MC_TURN_LASER_STEPPER_ON     "631 S1"
+#define MC_TURN_LASER_STEPPER_OFF    "631 S0"
+#define MC_SET_LASER_DIRECTION_CW    "635 S1"
+#define MC_SET_LASER_DIRECTION_CCW   "634 S0"
 
-#define MC_PERFORM_STEP        "613 S"
-#define MC_TURN_TABLE_STEPPER_ON     "612 S1"
-#define MC_TURN_TABLE_STEPPER_OFF     "612 S0"
-#define MC_SET_TABLE_DIRECTION_CW    "614 S1"
-#define MC_SET_TABLE_DIRECTION_CCW   "614 S0"
+#define MC_PERFORM_STEP              "625 S"
+#define MC_TURN_TABLE_STEPPER_ON     "624 S1"
+#define MC_TURN_TABLE_STEPPER_OFF    "624 S0"
+#define MC_SET_TABLE_DIRECTION_CW    "627 S1"
+#define MC_SET_TABLE_DIRECTION_CCW   "627 S0"
 
+#define MC_TURN_TABLE_MM             "624 S1"
 
-
-#define MC_FABSCAN_PING        "616"
-
-#define REALLY_BIG_NUMBER     99999
-#define REALLY_SMALL_NUMBER  -99999
+#define REALLY_BIG_NUMBER            99999
+#define REALLY_SMALL_NUMBER          -99999
 
 //to make the scanning process faster we ommit the lower and hight part of the cvImage
 //as there is no object anyway.  The lower limit is defined by the turning table lower bound

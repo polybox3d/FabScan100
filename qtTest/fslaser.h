@@ -3,6 +3,8 @@
 
 #include "staticHeaders.h"
 
+#include "ComModule.h"
+
 class FSLaser
 {
 private:

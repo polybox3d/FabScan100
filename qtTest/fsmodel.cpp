@@ -1,6 +1,7 @@
 #include "fsmodel.h"
 
 #include <pcl/kdtree/kdtree_flann.h>
+#include <pcl/search/kdtree.h>
 #include <pcl/features/normal_3d.h>
 #include <pcl/surface/gp3.h>
 #include <pcl/common/common.h>

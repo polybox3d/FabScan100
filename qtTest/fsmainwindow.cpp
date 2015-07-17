@@ -23,7 +23,6 @@ FsMainWindow::FsMainWindow(SerialPort *serial, QWidget *parent) :
     hwTimer(new QBasicTimer),
     ui(new Ui::FsMainWindow)
 {
-    FSController::getInstance()->serial = serial;
     ui->setupUi(this);
 
 

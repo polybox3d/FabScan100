@@ -34,7 +34,6 @@ class FSController
         FSControlPanel* controlPanel;
         GeometryEngine* geometries;
         FSModel* model;
-        SerialPort* serial;
         FSWebCam* webcam;
         FSTurntable* turntable;
         FSLaser* laser;
