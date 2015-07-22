@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PolyFabScanWindow</class>
+ <widget class="QWidget" name="PolyFabScanWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>550</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>PolyFabScanWindow</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>801</width>
+     <height>551</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="control">
+    <attribute name="title">
+     <string>Control</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>350</width>
+       <height>100</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Settings</string>
+     </property>
+     <widget class="QComboBox" name="selectWebcam">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>30</y>
+        <width>231</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="selectSerial">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>70</y>
+        <width>231</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>59</width>
+        <height>14</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Webcam</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Connection</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="profilBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>350</width>
+       <height>65</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Profile</string>
+     </property>
+     <widget class="QPushButton" name="loadProfil">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>30</y>
+        <width>91</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Charger</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../../../src/ressources.qrc">
+        <normaloff>:/img/img/upload.png</normaloff>:/img/img/upload.png</iconset>
+      </property>
+     </widget>
+     <widget class="QLabel" name="currentProfil">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Profile par defaut</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>190</y>
+       <width>351</width>
+       <height>131</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Camera</string>
+     </property>
+     <widget class="QPushButton" name="fetchFrameButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>131</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fetch Frame</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../../../src/ressources.qrc">
+        <normaloff>:/img/img/picture.png</normaloff>:/img/img/picture.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="diffImageButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>131</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Diff Image</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../../../src/ressources.qrc">
+        <normaloff>:/img/img/copy.png</normaloff>:/img/img/copy.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="laserImageButton">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>30</y>
+        <width>131</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Laser Image</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../../../src/ressources.qrc">
+        <normaloff>:/img/img/laser_image.png</normaloff>:/img/img/laser_image.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="detectLaserButton">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>70</y>
+        <width>131</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Detect Laser</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../../../src/ressources.qrc">
+        <normaloff>:/img/img/laser.png</normaloff>:/img/img/laser.png</iconset>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="xMirror">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>110</y>
+        <width>81</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>X Mirror</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="yMirror">
+      <property name="geometry">
+       <rect>
+        <x>250</x>
+        <y>110</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Y Mirror</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="editLines">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>110</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Edit Lines</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="LaserDockWidget" name="laserWidget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>330</y>
+       <width>350</width>
+       <height>180</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="RotationControlDock" name="rotDock" native="true">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>290</y>
+       <width>420</width>
+       <height>230</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="displayFrame">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>10</y>
+       <width>360</width>
+       <height>270</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: black; color: white;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="bluLine">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>133</y>
+       <width>381</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(0, 170, 255);
+color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string>MIDDLE TABLE</string>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cropBotLine">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>250</y>
+       <width>381</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 0);
+color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string>CROP BOTTOM</string>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cropTopLine">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>30</y>
+       <width>381</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(255, 255, 0);
+color: rgb(0, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string>CROP TOP</string>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="laserLine">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>0</y>
+       <width>12</width>
+       <height>290</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(170, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string>L
+A
+S
+E
+R</string>
+     </property>
+     <property name="flat">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="webcam">
+    <attribute name="title">
+     <string>Webcam</string>
+    </attribute>
+    <widget class="QCameraViewfinder" name="webcamView" native="true">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>751</width>
+       <height>471</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <widget class="QLabel" name="cameraLabel">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>751</width>
+        <height>471</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: black; color: white;</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="text">
+       <string>Select a camera from the menu!</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="scanning">
+    <attribute name="title">
+     <string>Scanning</string>
+    </attribute>
+    <widget class="MainWidget" name="scanningView" native="true">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>781</width>
+       <height>441</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="cursor">
+      <cursorShape>OpenHandCursor</cursorShape>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">border: 1px solid black</string>
+     </property>
+    </widget>
+    <widget class="QGroupBox" name="profilBox_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>451</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>File</string>
+     </property>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>431</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="newFile">
+         <property name="text">
+          <string>Nouveau</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../../src/ressources.qrc">
+           <normaloff>:/img/img/upload.png</normaloff>:/img/img/upload.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="loadFile">
+         <property name="text">
+          <string>Charger</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../../src/ressources.qrc">
+           <normaloff>:/img/img/upload.png</normaloff>:/img/img/upload.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="saveFile">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Enregistrer</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../../src/ressources.qrc">
+           <normaloff>:/img/img/save.png</normaloff>:/img/img/save.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="exportFile">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="text">
+          <string>Export STL</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../../../src/ressources.qrc">
+           <normaloff>:/img/img/save.png</normaloff>:/img/img/save.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="geometry">
+      <rect>
+       <x>480</x>
+       <y>9</y>
+       <width>311</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Scan</string>
+     </property>
+     <widget class="QComboBox" name="resolutionComboBox">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>30</y>
+        <width>71</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::TabFocus</enum>
+      </property>
+      <property name="currentText">
+       <string>Best</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <item>
+       <property name="text">
+        <string>Best</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Good</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Normal</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Poor</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="scanButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>101</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::StrongFocus</enum>
+      </property>
+      <property name="text">
+       <string>Start Scan</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../../../src/ressources.qrc">
+        <normaloff>:/img/img/play_green.png</normaloff>:/img/img/play_green.png</iconset>
+      </property>
+      <property name="default">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="estimatedTime">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>30</y>
+        <width>105</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Time</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>MainWidget</class>
+   <extends>QWidget</extends>
+   <header>mainwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QCameraViewfinder</class>
+   <extends>QWidget</extends>
+   <header>qcameraviewfinder.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>LaserDockWidget</class>
+   <extends>QWidget</extends>
+   <header>LaserDockWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RotationControlDock</class>
+   <extends>QWidget</extends>
+   <header>RotationControlDock.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../../../src/ressources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
