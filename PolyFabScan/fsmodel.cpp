@@ -383,7 +383,7 @@ unsigned int FSModel::openFromOFFFile(const char* offFilePath){
   faceVector.reserve(numberOfFaces);
 
   /* read vertices=tripple of points from .off file and store them in vertexVector */
-  for(int i=0;i<numberOfVertices;i++){
+  for(unsigned int i=0;i<numberOfVertices;i++){
     FSFloat x,y,z;
     while(offFile.peek()=='#') offFile.ignore(256,'\n');
     offFile >> x;
@@ -397,12 +397,12 @@ unsigned int FSModel::openFromOFFFile(const char* offFilePath){
   }
 
   /* read faces from .off file and store them in faceVector */
-  for(int i=0;i<numberOfFaces;i++){
+  for(unsigned int i=0;i<numberOfFaces;i++){
     unsigned int n; //number of vertices on this face
     offFile >> n;
     vector<unsigned int> indiceVector;
     indiceVector.reserve(n);
-    for(int j=0;j<n;j++){
+    for(unsigned int j=0;j<n;j++){
       unsigned int z; //indice of vertex
       while(offFile.peek()=='#') offFile.ignore(256,'\n');
       offFile >> z;
@@ -424,7 +424,7 @@ unsigned int FSModel::convertPolygons2Triangles(void){
 
   /* find out number of triangles and reserve space for them */
   unsigned int numberOfNewFaces = 0;
-  for(int i=0;i<faceVector.size();i++){ //iterate throught the polygons
+  for(unsigned int i=0;i<faceVector.size();i++){ //iterate throught the polygons
     vector <unsigned int> polygon = faceVector[i];
     numberOfNewFaces += polygon.size()-2; //minus 2 'cos triangle has 3 vertices = 1 face
   }
@@ -433,7 +433,7 @@ unsigned int FSModel::convertPolygons2Triangles(void){
   //cout << "#old: " << faceVector.size() << " #new: " << numberOfNewFaces << endl;
 
   /* decompose polygons into triangles */
-  for(int i=0;i<faceVector.size();i++){ //iterate throught the polygons
+  for(unsigned int i=0;i<faceVector.size();i++){ //iterate throught the polygons
     vector <unsigned int> polygon = faceVector[i];
 
     while(polygon.size() > 3){ //current polygon is not a triangle, so further inspection is needed
@@ -461,7 +461,7 @@ unsigned int FSModel::saveToSTLFile(string stlFilePath){
   stlFile.open(stlFilePath.c_str() ,ios::out);
   stlFile << "solid 3dscan" << endl;
 
-  for(int i=0;i<faceVector.size();i++){
+  for(unsigned int i=0;i<faceVector.size();i++){
 
     FSPoint p1 = vertexVector[ faceVector[i][0] ];
     FSPoint p2 = vertexVector[ faceVector[i][1] ];
@@ -489,7 +489,7 @@ unsigned int FSModel::saveToSTLFile(string stlFilePath){
 
     stlFile << "facet normal " << n.x  << " " << n.y << " " << n.z << endl;
     stlFile << "  outer loop" << endl;
-    for(int j=0;j<faceVector[i].size();j++){
+    for(unsigned int j=0;j<faceVector[i].size();j++){
       unsigned int indice = faceVector[i][j];
       FSPoint p = vertexVector[indice];
       //axes are permuted to comply with 3d printing standart where the x-y plane is horizontal

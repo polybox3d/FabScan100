@@ -55,7 +55,7 @@ RESOURCES += \
     $$PWD/ressources.qrc
 
 
-    message("Buildng for Linux.")
+    message("==> PolyFabScan for Linux.")
 
     #CONFIG += link_pkgconfig
     #PKGCONFIG += opencv

@@ -436,7 +436,7 @@ FSPoint FSVision::detectLaserLine( cv::Mat &laserOff, cv::Mat &laserOn, unsigned
     //for(int i=0;i<lines.size();i++){
     cv::Point p1;
     cv::Point p2;
-    for(int i=0;i<lines.size();i++){
+    for(unsigned int i=0;i<lines.size();i++){
         qDebug() << "drawing line "<<lines[i][0]<<lines[i][1]<<lines[i][2]<<lines[i][3];
         //int i = 0;
         p1.x = lines[i][0];
